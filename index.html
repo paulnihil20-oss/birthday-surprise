@@ -306,23 +306,45 @@ const countdownInterval = setInterval(() => {
 }, 1000);
 
   const message = `
-Dear Lavanthika,
+To the person who’s been a part of my life as a good friend since my childhood, 🌱
 
 Happy Birthday 🎂💖
 
-On your special day, I just want you to know how truly important you are to me.
-Your smile, your kindness, and the way you make people feel comfortable around you
-make you incredibly special 🌸
+This is my birthday wish for you after two years… 🕊️
 
-I’m really grateful for every moment, every laugh, and every memory we share.
+We’ve been part of each other’s lives for so many years now.
+I still remember how our journey started — when we met in 5th standard 🏫✨
+
+Back then, I honestly never thought we would still be friends after all these years.
+We were both selected as class representatives in 5A2. I didn’t even know you existed in the school before that. When I first came to the class and ma’am automatically selected you as the class leader, I thought you were one of those students who would always top the class — disciplined, perfect, and serious 📚⭐
+
+I didn’t want to be the co-leader beside you, because I felt you would expect the other leader to be just as perfect… and I was completely the opposite of that 😅
+But somehow, I ended up as the co-leader.
+
+What happened after that became one of the happiest memories of my school life 💫
+
+After 5th standard, we weren’t in the same class until 10th. Even then, things didn’t work out the way we expected. You were the one the school management believed would become the school first 🏆✨ Unfortunately, we didn’t end up in the same class, and that day became the last time we met in person.
+
+That felt like the last intersection point of our lives… 🌙
+And yet, even after that, we always knew what was going on in each other’s lives 🤍
+
+I’m truly grateful that you’ve been part of my journey till now, and I hope it continues 🌼
+
+I think you are much stronger and more mature than me. Sometimes, I feel like a younger brother who goes to his sister whenever he feels low 🫂
+You’ve always been the person I turn to when something goes wrong or when a day just feels off 🌧️➡️🌤️
+
+I hope you grow into an even better and stronger version of yourself 💪✨
+I hope you enjoy your college life 🎓, find happiness in what you do, and someday find the right person who truly suits you 💞
+
+And finally — whenever you feel low, or when you want to share something with someone, remember that I’ll always be there when you need me 🤍🫶
+
 You deserve all the happiness, success, and love this world has to offer ✨
+May this year bring you beautiful surprises, big smiles, and dreams coming true 💫🌸
 
-May this year bring you beautiful surprises, big smiles, and dreams coming true 💫
-
-Happy Birthday once again, Lavanthika 💝  
-Stay amazing, always.
-
+Happy Birthday once again, Lavanthika 💝🎉
+Stay amazing, always. 🌷
 — Paul
+
 `;
 
   let index = 0;
@@ -335,6 +357,16 @@ Stay amazing, always.
     if (music) {
   music.volume = 1;
   music.play();
+const clickSound = document.getElementById("unlockSound");
+if (clickSound) {
+  clickSound.volume = 0;
+  clickSound.play().then(() => {
+    clickSound.pause();
+    clickSound.currentTime = 0;
+    clickSound.volume = 1;
+  }).catch(() => {});
+}
+
 }
 
 
@@ -478,13 +510,14 @@ function checkPassword() {
   const entered = passwordInput.value.trim();
 
   if (entered === correctPassword) {
-    lowerMusicBeforeUnlock();
-    // Play unlock click sound 🔊
     const clickSound = document.getElementById("unlockSound");
-    if (clickSound) {
-      clickSound.currentTime = 0;
-      clickSound.play();
-    }
+if (clickSound) {
+  clickSound.volume = 1;
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
+}
+
+lowerMusicBeforeUnlock();
     unlockBtn.disabled = true;
 
     const lock = document.getElementById("lockScreen");
@@ -513,17 +546,17 @@ setTimeout(() => {
   <div class="surprise-card">
     <h2>💝 Just One More Thing</h2>
     <p>
-  Best friends don’t need to talk every day,<br>
-  but when they do — it feels like nothing changed 🌼<br><br>
+From school corridors to life now,<br>
+you’ve been part of more memories than you know 🏫✨<br><br>
 
-  Some friendships quietly become a safe place,<br>
-  and I’m really grateful ours is one of them 🫶<br><br>
+Some friendships become a safe place,<br>
+and I’m really glad ours is one of them 🤍🫶<br><br>
 
-  No matter where life takes us,<br>
-  I’ll always wish the best for you.<br><br>
+You are my bestest exposure till now 🤍<br><br>
 
-  "THIS TIME I DIDN'T FORGET YOUR BIRTHDAY"
+Happy Birthday, and always wishing you happiness 🌼
 </p>
+
 
     <p class="tap-note">Tap anywhere to continue ✨</p>
   </div>
