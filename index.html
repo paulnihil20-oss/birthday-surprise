@@ -1,312 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday 🎉</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>A Small Surprise ✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .screen {
-      padding: 20px;
-      animation: fadeIn 2s ease;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    button {
-      padding: 12px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 25px;
-      background: #fff;
-      color: #ff5e78;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    .letter {
-  display: none;
-  background: rgba(255,255,255,0.2);
-  padding: 20px;
-  border-radius: 15px;
-  margin-top: 20px;
-  max-height: 60vh;
-  overflow-y: auto;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.15rem;
-  line-height: 1.6;
+body{
+height:100vh;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+justify-content:center;
+align-items:center;
+color:#fff;
+text-align:center;
+overflow:hidden;
 }
 
+.screen{padding:20px;animation:fadeIn 2s ease;}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
-    }
-
-    .friend {
-  position: absolute;
-  bottom: -20px;
-  font-size: 22px;
-  animation: float 7s linear;
-  opacity: 0.85;
+button{
+padding:12px 25px;
+font-size:1rem;
+border:none;
+border-radius:25px;
+background:#fff;
+color:#ff5e78;
+cursor:pointer;
+margin-top:15px;
+transition:0.3s;
 }
 
+button:hover{transform:scale(1.05);}
 
-    @keyframes float {
-      0% {transform: translateY(0); opacity: 0;}
-      50% {opacity: 1;}
-      100% {transform: translateY(-100vh); opacity: 0;}
-    }
-.surprise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 1.5s ease;
+.letter{
+display:none;
+background:rgba(255,255,255,0.2);
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+max-height:60vh;
+overflow-y:auto;
+font-family:'Patrick Hand',cursive;
+font-size:1.15rem;
+line-height:1.6;
 }
 
-.surprise-card {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #fff;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  max-width: 90%;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-  animation: popUp 1.2s ease;
+.friend{
+position:absolute;
+bottom:-20px;
+font-size:22px;
+animation:float 7s linear;
+opacity:0.85;
 }
 
-.surprise-card h2 {
-  margin-bottom: 15px;
+@keyframes float{
+0%{transform:translateY(0);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
 }
 
-.surprise-card p {
-  font-size: 1.05rem;
-  line-height: 1.6;
+.surprise-overlay{
+position:fixed;
+top:0;
+left:0;
+height:100vh;
+width:100vw;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(6px);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:1000;
 }
 
-.surprise-card span {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
+.surprise-card{
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+color:#fff;
+padding:30px;
+border-radius:25px;
+max-width:90%;
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+animation:popUp 1s ease;
 }
 
-.tap-note {
-  margin-top: 15px;
-  font-size: 0.85rem;
-  opacity: 0.85;
+@keyframes popUp{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
 }
 
-@keyframes popUp {
-  from {
-    transform: scale(0.85);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+#lockScreen{transition:opacity 0.6s ease;}
 
-.friend-rain {
-  position: fixed;
-  top: -30px;
-  font-size: 22px;
-  animation: rain 4s linear forwards;
-  z-index: 1100;
-}
-
-@keyframes rain {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
-}
-
-#lockScreen {
-  transition: opacity 0.6s ease;
-}
-
-
-
-
-
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="screen">
-    <h1>✨ A Small Surprise ✨</h1>
+<div class="screen">
+<h1>✨ A Small Surprise ✨</h1>
+<p>This little surprise is just for you 💖</p>
 
+<div id="lockScreen">
+<h2 id="countdownTitle">🎂 Birthday Countdown</h2>
+<p id="countdownTimer"></p>
 
-    <p>This little surprise is just for you 💖</p>
-<div id="lockScreen" style="margin-bottom:20px;">
-  <h2 id="countdownTitle">🎂 Lavanthika’s Birthday Countdown</h2>
-  <p id="countdownTimer" style="font-size:1.2rem; font-weight:bold;"></p>
+<input type="password" id="passwordInput" placeholder="Enter the special time 💛" disabled>
+<p id="passwordHint">This unlocks on your birthday 🌙</p>
 
-  <input
-    type="password"
-    id="passwordInput"
-    placeholder="Enter the special date 💛"
-    style="padding:10px; border-radius:20px; border:none; text-align:center; margin-top:10px;"
-    disabled
-  >
+<button onclick="checkPassword()" id="unlockBtn">Locked 🔒</button>
+</div>
 
-  <p id="passwordHint" style="font-size:0.85rem; opacity:0.85; margin-top:8px;">
-    This unlocks on your birthday 🌙
-  </p>
+<p id="magicLine" style="display:none;margin-top:15px;font-style:italic;"></p>
 
-  <button onclick="checkPassword()" style="margin-top:10px;" id="unlockBtn">
-  Locked 🔒
-</button>
+<button onclick="showLetter()" id="openBtn" style="display:none;">Open My Letter 💌</button>
 
+<div class="letter" id="letter">
+<p id="typedText"></p>
+</div>
+
+<div id="memoryVault" style="display:none;margin-top:20px;">
+<button onclick="revealMemory()">Unlock a Memory 🌸</button>
+<p id="memoryReveal" style="margin-top:15px;font-family:'Patrick Hand',cursive;"></p>
+</div>
+
+<div id="finalStill" style="display:none;margin-top:30px;font-family:'Patrick Hand',cursive;font-size:1.2rem;">
+This page will always be here. Just like the wish. 🤍
+</div>
 
 </div>
 
-
-    <button onclick="showLetter()" id="openBtn" style="display:none;">
-  Open My Letter 💌
-</button>
-
-
-   <div class="letter" id="letter">
-  <p id="typedText"></p>
-  <p id="memoryPrompt" style="margin-top:15px; font-size:0.9rem; opacity:0.85;"></p>
-</div>
-
-
-  <!-- Background Music (optional) -->
-  <!-- Background Music -->
-<!-- Background Music -->
-<audio id="bgm" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3">
-</audio>
-
-<!-- Unlock click sound -->
 <audio id="unlockSound">
-  <source src="https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1124.mp3" type="audio/mp3">
+<source src="https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1124.mp3" type="audio/mp3">
 </audio>
-
-<!-- Birthday chime -->
-<audio id="chimeSound">
-  <source src="https://assets.mixkit.co/sfx/preview/mixkit-magic-notification-2342.mp3" type="audio/mp3">
-</audio>
-
-
-
 
 <script>
-let chimePlayed = false;
-const now = new Date();
-let year = now.getFullYear();
-const birthdayDate = new Date(year, 1, 22, 0, 0, 0); // Feb = 1
 
-if (birthdayDate.getTime() < now.getTime()) {
-  birthdayDate.setFullYear(year + 1);
+let chimePlayed=false;
+const now=new Date();
+let year=now.getFullYear();
+const birthdayDate=new Date(year,1,22,0,0,0);
+
+if(birthdayDate.getTime()<now.getTime()){birthdayDate.setFullYear(year+1);}
+const birthday=birthdayDate.getTime();
+const correctPassword="064500";
+let isBirthday=false;
+
+const timerEl=document.getElementById("countdownTimer");
+const passwordInput=document.getElementById("passwordInput");
+const unlockBtn=document.getElementById("unlockBtn");
+const hintEl=document.getElementById("passwordHint");
+const openBtn=document.getElementById("openBtn");
+
+const countdownInterval=setInterval(()=>{
+const now=new Date().getTime();
+const diff=birthday-now;
+
+if(diff<=0){
+isBirthday=true;
+timerEl.innerHTML="🎉 It’s your day now 💛";
+passwordInput.disabled=false;
+unlockBtn.innerText="Unlock 🎁";
+clearInterval(countdownInterval);
+return;
 }
 
-const birthday = birthdayDate.getTime();
+const days=Math.floor(diff/(1000*60*60*24));
+const hours=Math.floor((diff/(1000*60*60))%24);
+const minutes=Math.floor((diff/(1000*60))%60);
+const seconds=Math.floor((diff/1000)%60);
+timerEl.innerHTML=`${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-const correctPassword = "064500";
-let isBirthday = false;
+},1000);
 
-
-const timerEl = document.getElementById("countdownTimer");
-const titleEl = document.getElementById("countdownTitle");
-const passwordInput = document.getElementById("passwordInput");
-const unlockBtn = document.getElementById("unlockBtn");
-const hintEl = document.getElementById("passwordHint");
-const openBtn = document.getElementById("openBtn");
-
-const countdownInterval = setInterval(() => {
-
-  const now = new Date().getTime();
-  const diff = birthday - now;
-
-  if (diff <= 0) {
-  isBirthday = true;
-  
-
-
-  timerEl.innerHTML = "🎉 It’s your day now 💛";
-  titleEl.innerHTML = "It’s time ✨";
-
-  passwordInput.disabled = false;
-  hintEl.innerHTML = "Enter your special date 💫";
-  unlockBtn.innerText = "Unlock 🎁";
-
-  // 🔔 Play chime ONCE
-  if (!chimePlayed) {
-    const chime = document.getElementById("chimeSound");
-    if (chime) {
-      chime.volume = 0.6;
-      chime.play();
-    }
-    chimePlayed = true;
-
-  }
-  clearInterval(countdownInterval);
-
-  return;
+function checkPassword(){
+if(!isBirthday){
+hintEl.innerHTML="Not yet 🌙 Just a little more patience 💛";
+return;
 }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+if(passwordInput.value.trim()===correctPassword){
 
-  timerEl.innerHTML =
-    `${days} days ${hours} hrs ${minutes} min ${seconds} sec`;
-}, 1000);
+const clickSound=document.getElementById("unlockSound");
+clickSound.play().catch(()=>{});
 
-  const message = `
-To the person who’s been a part of my life as a good friend since my childhood, 🌱
+unlockBtn.disabled=true;
+document.getElementById("lockScreen").style.display="none";
+openBtn.style.display="inline-block";
+showMagicLine();
+
+}else{
+hintEl.innerHTML="Almost there 🌸 Try again";
+}
+}
+
+const magicLines=[
+"Some friendships just stay. 🤍",
+"Time changed many things, but not everything 🌙",
+"Not every bond needs daily presence 🌸",
+"Some people remain important, even through distance 💫"
+];
+
+function showMagicLine(){
+const line=magicLines[Math.floor(Math.random()*magicLines.length)];
+const element=document.getElementById("magicLine");
+element.innerText=line;
+element.style.display="block";
+}
+
+const message=`To the person who’s been a part of my life as a good friend since my childhood, 🌱
 
 Happy Birthday 🎂💖
 
@@ -344,223 +248,77 @@ May this year bring you beautiful surprises, big smiles, and dreams coming true 
 Happy Birthday once again, Lavanthika 💝🎉
 Stay amazing, always. 🌷
 — Paul
-
 `;
 
-  let index = 0;
+let index=0;
 
-  function showLetter() {
-    document.getElementById("letter").style.display = "block";
-
-    // Play music after user tap
-    const music = document.getElementById("bgm");
-    if (music) {
-  music.volume = 1;
-  music.play();
-const clickSound = document.getElementById("unlockSound");
-if (clickSound) {
-  clickSound.volume = 0;
-  clickSound.play().then(() => {
-    clickSound.pause();
-    clickSound.currentTime = 0;
-    clickSound.volume = 1;
-  }).catch(() => {});
+function showLetter(){
+document.getElementById("letter").style.display="block";
+typeEffect();
 }
 
-}
-
-
-    // Fullscreen
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    }
-
-    typeEffect();
-    
-  }
-
-  function typeEffect() {
-  if (index < message.length) {
-    const typed = document.getElementById("typedText");
-    typed.innerHTML +=
-      message[index] === "\n" ? "<br>" : message[index];
-    index++;
-
-    // Auto-scroll as text grows
-    const letterBox = document.getElementById("letter");
-    letterBox.scrollTop = letterBox.scrollHeight;
-
-    setTimeout(typeEffect, 90); // slow & emotional
-  } else {
-  showMemoryPrompt();
-  setTimeout(showFinalPopup, 800); // small emotional pause
+function typeEffect(){
+if(index<message.length){
+const typed=document.getElementById("typedText");
+typed.innerHTML+=message[index]==="\n"?"<br>":message[index];
+index++;
+setTimeout(typeEffect,60);
+}else{
+setTimeout(showFinalPopup,1000);
 }
 }
 
+function showFinalPopup(){
+const popup=document.createElement("div");
+popup.className="surprise-overlay";
+popup.style.display="flex";
+popup.innerHTML=`<div class="surprise-card">
+<h2>💝 Just One More Thing</h2>
+<p>You are my bestest exposure till now 🤍<br><br>
+From school corridors to life now,<br>
+I’m really glad our friendship stayed.
+You are my bestest exposure till now 🤍<br></p>
+<p style="margin-top:15px;">Tap to continue ✨</p>
+</div>`;
+document.body.appendChild(popup);
 
-
-  // Best Friends floating animation 🌟
-const friends = ["⭐", "🌸", "🫶", "😊", "💫"];
-
-setInterval(() => {
-  const friend = document.createElement("div");
-  friend.className = "friend";
-  friend.innerHTML = friends[Math.floor(Math.random() * friends.length)];
-  friend.style.left = Math.random() * 100 + "vw";
-  friend.style.animationDuration = (Math.random() * 3 + 5) + "s";
-
-  document.body.appendChild(friend);
-
-  setTimeout(() => {
-    friend.remove();
-  }, 7000);
-}, 600);
-
-
-  // Final popup
-  function showFinalPopup() {
-  const surprise = document.getElementById("finalSurprise");
-  surprise.style.display = "flex";
-
-  startFriendRain();   // emoji rain 🌟
-  fadeMusic();         // gentle music fade 🎵
-
-  if (navigator.vibrate) {
-    navigator.vibrate([100, 50, 100]);
-  }
-
-  // Close popup on tap
-  surprise.onclick = () => {
-    surprise.style.display = "none";
-  };
+popup.onclick=()=>{
+popup.remove();
+document.getElementById("memoryVault").style.display="block";
+setTimeout(()=>{document.getElementById("finalStill").style.display="block";},3000);
+};
 }
 
-
-
-function startFriendRain() {
-  const emojis = ["⭐", "🌸", "🫶", "😊", "💫", "🎉"];
-
-  for (let i = 0; i < 30; i++) {
-    setTimeout(() => {
-      const drop = document.createElement("div");
-      drop.className = "friend-rain";
-      drop.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-      drop.style.left = Math.random() * 100 + "vw";
-      drop.style.animationDuration = (Math.random() * 2 + 3) + "s";
-      document.body.appendChild(drop);
-
-      setTimeout(() => drop.remove(), 4000);
-    }, i * 120);
-  }
-}
-
-
-function fadeMusic() {
-  const music = document.getElementById("bgm");
-  if (!music) return;
-
-  let volume = music.volume;
-  const fade = setInterval(() => {
-    if (volume > 0.2) {
-      volume -= 0.05;
-      music.volume = volume;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
-}
-
-const memories = [
-  "Some conversations stay with us longer than we expect 🌸",
-  "Some people make ordinary days feel lighter 💫",
-  "Some friendships just feel safe 🫶",
-  "Some smiles are remembered without trying 😊"
+const vaultMemories=[
+"5A2 class leaders — who knew that would start everything 🏫",
+"The day I thought you were too perfect to talk to 😅"
+"The day when the science expo happend",
+"Even distance couldn’t really change anything 🌙",
+"Some friendships grow quietly over time 🌱"
 ];
 
-function showMemoryPrompt() {
-  const prompt = memories[Math.floor(Math.random() * memories.length)];
-  document.getElementById("memoryPrompt").innerText = prompt;
+let memoryIndex=0;
+
+function revealMemory(){
+const reveal=document.getElementById("memoryReveal");
+if(memoryIndex<vaultMemories.length){
+reveal.innerHTML+=vaultMemories[memoryIndex]+"<br><br>";
+memoryIndex++;
+}else{
+reveal.innerHTML+="Some memories don’t need words anymore ✨";
+}
 }
 
-function lowerMusicBeforeUnlock() {
-  const music = document.getElementById("bgm");
-  if (!music) return;
-
-  let volume = music.volume;
-  const lower = setInterval(() => {
-    if (volume > 0.15) {
-      volume -= 0.05;
-      music.volume = volume;
-    } else {
-      clearInterval(lower);
-    }
-  }, 120);
-}
-
-
-function checkPassword() {
-  
-
-  if (!isBirthday) {
-    hintEl.innerHTML =
-      "Not yet 🌙 This opens on your birthday. Just a little more patience 💛";
-    return;
-  }
-
-  const entered = passwordInput.value.trim();
-
-  if (entered === correctPassword) {
-    const clickSound = document.getElementById("unlockSound");
-if (clickSound) {
-  clickSound.volume = 1;
-  clickSound.currentTime = 0;
-  clickSound.play().catch(() => {});
-}
-
-lowerMusicBeforeUnlock();
-    unlockBtn.disabled = true;
-
-    const lock = document.getElementById("lockScreen");
-lock.style.opacity = "0";
-
-setTimeout(() => {
-  lock.style.display = "none";
-  openBtn.style.display = "inline-block";
-}, 600);
-
-  } else {
-    hintEl.innerHTML = "Almost there 🌸 Try again";
-  }
-}
-
-
-
-
-
-
+const friends=["⭐","🌸","🫶","😊","💫"];
+setInterval(()=>{
+const friend=document.createElement("div");
+friend.className="friend";
+friend.innerHTML=friends[Math.floor(Math.random()*friends.length)];
+friend.style.left=Math.random()*100+"vw";
+document.body.appendChild(friend);
+setTimeout(()=>friend.remove(),7000);
+},600);
 
 </script>
- 
-<!-- Final Surprise Overlay -->
-<div id="finalSurprise" class="surprise-overlay">
-  <div class="surprise-card">
-    <h2>💝 Just One More Thing</h2>
-    <p>
-From school corridors to life now,<br>
-you’ve been part of more memories than you know 🏫✨<br><br>
-
-Some friendships become a safe place,<br>
-and I’m really glad ours is one of them 🤍🫶<br><br>
-
-You are my bestest exposure till now 🤍<br><br>
-
-Happy Birthday, and always wishing you happiness 🌼
-</p>
-
-
-    <p class="tap-note">Tap anywhere to continue ✨</p>
-  </div>
-</div>
-
 </body>
 </html>
