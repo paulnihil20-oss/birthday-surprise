@@ -218,6 +218,19 @@
    <div class="letter" id="letter">
   <p id="typedText"></p>
   <p id="memoryPrompt" style="margin-top:15px; font-size:0.9rem; opacity:0.85;"></p>
+<div id="timeline" 
+     style="margin-top:25px; display:none; font-size:0.95rem; opacity:0; transition:opacity 1s ease;">
+  
+  <hr style="margin:15px 0; border:0.5px solid rgba(255,255,255,0.4);">
+
+  <p><strong>Our Timeline 🤍</strong></p>
+  <p>2015 – We met in 5th standard 🏫</p>
+  <p>Class Leaders – 5A2 ⭐</p>
+  <p>10th Standard – Last intersection point 🎓</p>
+  <p>Now – Still connected ✨</p>
+
+</div>
+
 </div>
 
 
@@ -229,9 +242,10 @@
 </audio>
 
 <!-- Unlock click sound -->
-<audio id="unlockSound">
-  <source src="https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1124.mp3" type="audio/mp3">
+<audio id="unlockSound" preload="auto">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3" type="audio/mp3">
 </audio>
+
 
 <!-- Birthday chime -->
 <audio id="chimeSound">
@@ -330,7 +344,7 @@ And yet, even after that, we always knew what was going on in each other’s liv
 
 I’m truly grateful that you’ve been part of my journey till now, and I hope it continues 🌼
 
-I think you are much stronger and more mature than me. Sometimes, I feel like a younger brother who goes to his sister whenever he feels low 🫂
+I think you are much stronger and more mature than me.Sometimes, I feel like one of those younger ones who goes to their comfort person whenever they feel low 🫂
 You’ve always been the person I turn to when something goes wrong or when a day just feels off 🌧️➡️🌤️
 
 I hope you grow into an even better and stronger version of yourself 💪✨
@@ -341,7 +355,7 @@ And finally — whenever you feel low, or when you want to share something with 
 You deserve all the happiness, success, and love this world has to offer ✨
 May this year bring you beautiful surprises, big smiles, and dreams coming true 💫🌸
 
-Happy Birthday once again, Lavanthika 💝🎉
+Happiest Birthday once again, Lavanthika 💝🎉
 Stay amazing, always. 🌷
 — Paul
 
@@ -393,7 +407,16 @@ if (clickSound) {
     setTimeout(typeEffect, 90); // slow & emotional
   } else {
   showMemoryPrompt();
-  setTimeout(showFinalPopup, 800); // small emotional pause
+
+  const timeline = document.getElementById("timeline");
+timeline.style.display = "block";
+
+setTimeout(() => {
+  timeline.style.opacity = "1";
+}, 50);
+
+
+  setTimeout(showFinalPopup, 1500);
 }
 }
 
@@ -499,7 +522,6 @@ function lowerMusicBeforeUnlock() {
 
 
 function checkPassword() {
-  
 
   if (!isBirthday) {
     hintEl.innerHTML =
@@ -510,34 +532,36 @@ function checkPassword() {
   const entered = passwordInput.value.trim();
 
   if (entered === correctPassword) {
-    const clickSound = document.getElementById("unlockSound");
-if (clickSound) {
-  clickSound.volume = 1;
-  clickSound.currentTime = 0;
-  clickSound.play().catch(() => {});
-}
 
-lowerMusicBeforeUnlock();
+    const clickSound = document.getElementById("unlockSound");
+
+    if (clickSound) {
+      clickSound.currentTime = 0;
+      clickSound.volume = 1;
+      clickSound.play().catch(err => {
+        console.log("Sound blocked:", err);
+      });
+    }
+
+    if (navigator.vibrate) {
+      navigator.vibrate(80);
+    }
+
+    lowerMusicBeforeUnlock();
     unlockBtn.disabled = true;
 
     const lock = document.getElementById("lockScreen");
-lock.style.opacity = "0";
+    lock.style.opacity = "0";
 
-setTimeout(() => {
-  lock.style.display = "none";
-  openBtn.style.display = "inline-block";
-}, 600);
+    setTimeout(() => {
+      lock.style.display = "none";
+      openBtn.style.display = "inline-block";
+    }, 600);
 
   } else {
     hintEl.innerHTML = "Almost there 🌸 Try again";
   }
 }
-
-
-
-
-
-
 
 </script>
  
