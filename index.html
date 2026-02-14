@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -230,6 +231,16 @@
   <p>Now – Still connected ✨</p>
 
 </div>
+<div id="specialSection" 
+     style="margin-top:25px; display:none; opacity:0; transition:opacity 1s ease;">
+
+  <hr style="margin:15px 0; border:0.5px solid rgba(255,255,255,0.4);">
+
+  <p><strong>Why You’re Special 🤍</strong></p>
+
+  <div id="specialCards"></div>
+</div>
+
 
 </div>
 
@@ -259,7 +270,7 @@
 let chimePlayed = false;
 const now = new Date();
 let year = now.getFullYear();
-const birthdayDate = new Date(year, 1, 22, 0, 0, 0); // Feb = 1
+const birthdayDate = new Date(year, 1, 14, 0, 0, 0); // Feb = 1
 
 if (birthdayDate.getTime() < now.getTime()) {
   birthdayDate.setFullYear(year + 1);
@@ -292,7 +303,7 @@ const countdownInterval = setInterval(() => {
   titleEl.innerHTML = "It’s time ✨";
 
   passwordInput.disabled = false;
-  hintEl.innerHTML = "Enter your special date 💫";
+  hintEl.innerHTML = "Enter the special hour💫 :";
   unlockBtn.innerText = "Unlock 🎁";
 
   // 🔔 Play chime ONCE
@@ -408,15 +419,17 @@ if (clickSound) {
   } else {
   showMemoryPrompt();
 
-  const timeline = document.getElementById("timeline");
+const timeline = document.getElementById("timeline");
 timeline.style.display = "block";
 
 setTimeout(() => {
   timeline.style.opacity = "1";
 }, 50);
 
+showSpecialCards();
 
-  setTimeout(showFinalPopup, 1500);
+setTimeout(showFinalPopup, 5000);
+
 }
 }
 
@@ -499,6 +512,42 @@ const memories = [
   "Some friendships just feel safe 🫶",
   "Some smiles are remembered without trying 😊"
 ];
+
+const specialMessages = [
+  "You always stay strong even when things are hard 💪",
+  "You listen without judging 🤍",
+  "You make ordinary days feel lighter 🌸",
+  "You’ve been one of the safest conversations in my life 🫶"
+];
+
+function showSpecialCards() {
+  const section = document.getElementById("specialSection");
+  const container = document.getElementById("specialCards");
+
+  section.style.display = "block";
+
+  setTimeout(() => {
+    section.style.opacity = "1";
+  }, 50);
+
+  specialMessages.forEach((msg, i) => {
+    setTimeout(() => {
+      const card = document.createElement("p");
+      card.style.marginTop = "10px";
+      card.style.opacity = "0";
+      card.style.transition = "opacity 1s ease";
+      card.innerText = msg;
+
+      container.appendChild(card);
+
+      setTimeout(() => {
+        card.style.opacity = "1";
+      }, 100);
+
+    }, i * 1200);
+  });
+}
+
 
 function showMemoryPrompt() {
   const prompt = memories[Math.floor(Math.random() * memories.length)];
@@ -588,5 +637,4 @@ Happy Birthday, and always wishing you happiness 🌼
 
 </body>
 </html>
-
 
