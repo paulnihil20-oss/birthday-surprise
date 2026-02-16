@@ -279,7 +279,10 @@ if (birthdayDate.getTime() < now.getTime()) {
 const birthday = birthdayDate.getTime();
 
 const correctPassword = "064500";
-let isBirthday = false;
+let isBirthday = true;
+passwordInput.disabled = false;
+unlockBtn.innerText = "Unlock 🎁";
+
 
 
 const timerEl = document.getElementById("countdownTimer");
@@ -637,6 +640,7 @@ Happy Birthday, and always wishing you happiness 🌼
 
 </body>
 </html>
+
 
 
 
