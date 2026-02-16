@@ -270,14 +270,23 @@
 let chimePlayed = false;
 const TEST_MODE = false;  // change to false on Feb 22
 const now = new Date();
-let year = now.getFullYear();
-const birthdayDate = new Date(year, 1, 22, 0, 0, 0); // Feb = 1
 
-if (birthdayDate.getTime() < now.getTime()) {
-  birthdayDate.setFullYear(year + 1);
+const birthdayDate = new Date(now.getFullYear(), 1, 22, 0, 0, 0);
+
+const isToday =
+  now.getDate() === 22 &&
+  now.getMonth() === 1;
+
+let birthday;
+
+if (isToday) {
+  birthday = now.getTime(); // unlock immediately on Feb 22
+} else if (now > birthdayDate) {
+  birthday = new Date(now.getFullYear() + 1, 1, 22, 0, 0, 0).getTime();
+} else {
+  birthday = birthdayDate.getTime();
 }
 
-const birthday = birthdayDate.getTime();
 
 const correctPassword = "064500";
 let isBirthday = TEST_MODE ? true : false;
@@ -646,6 +655,7 @@ Happy Birthday, and always wishing you happiness 🌼
 
 </body>
 </html>
+
 
 
 
