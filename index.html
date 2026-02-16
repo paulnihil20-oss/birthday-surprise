@@ -156,6 +156,13 @@
   }
 }
 
+/* Memory Vault smooth animation */
+#memoryVault .surprise-card {
+  animation: popUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+    
+
 .friend-rain {
   position: fixed;
   top: -30px;
@@ -259,6 +266,12 @@
 
   <div id="specialCards"></div>
 </div>
+<button id="vaultBtn" 
+        onclick="openVault()" 
+        style="display:none; margin-top:20px;">
+  Open Our Memory Vault 📸
+</button>
+     
 
 
 </div>
@@ -466,6 +479,8 @@ setTimeout(() => {
 }, 50);
 
 showSpecialCards();
+document.getElementById("vaultBtn").style.display = "inline-block";
+    
 
 setTimeout(showFinalPopup, 5000);
 
@@ -712,6 +727,15 @@ function startConstellation() {
   drawStars();
 }
 
+function openVault() {
+  document.getElementById("memoryVault").style.display = "flex";
+}
+
+function closeVault() {
+  document.getElementById("memoryVault").style.display = "none";
+}
+  
+
 </script>
  
 <!-- Final Surprise Overlay -->
@@ -735,8 +759,30 @@ Happy Birthday, and always wishing you happiness 🌼
   </div>
 </div>
 
+<!-- Memory Vault Overlay -->
+<div id="memoryVault" class="surprise-overlay" style="display:none;">
+  <div class="surprise-card" style="max-height:80vh; overflow-y:auto;">
+
+    <h2>📸 Our Memory Vault</h2>
+
+    <p>Some chapters never fade… 🤍</p>
+
+    <img src="photo1.jpeg" style="width:100%; border-radius:15px; margin-top:15px;">
+    <p style="font-size:0.9rem;">5th Standard – Where everything began 🏫</p>
+
+    <img src="photo2.jpeg" style="width:100%; border-radius:15px; margin-top:20px;">
+    <p style="font-size:0.9rem;">School Days – Memories we can’t repeat ✨</p>
+
+    <button onclick="closeVault()" style="margin-top:20px;">
+      Close Vault 🔒
+    </button>
+
+  </div>
+</div>
+    
 </body>
 </html>
+
 
 
 
