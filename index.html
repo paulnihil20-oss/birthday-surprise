@@ -196,6 +196,24 @@
   display: none;
   z-index: -1;
 }
+#growthSlideshow {
+  width: 90%;
+  max-width: 450px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+#growthImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* prevents stretching */
+  border-radius: 20px;
+  transition: opacity 1s ease;
+}
 
     
 
@@ -872,9 +890,8 @@ Happiest Birthday, and always wishing you happiness 🌼
       Watching you grow has been beautiful 🤍
     </p>
 
-    <img id="growthImage"
-         src="year1.jpeg"
-         style="width:100%; border-radius:20px; margin-top:15px; transition:opacity 1s ease;">
+    <img id="growthImage">
+
 
     <p id="growthCaption" 
        style="margin-top:12px; font-size:0.95rem;">
@@ -919,6 +936,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
