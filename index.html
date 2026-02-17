@@ -770,10 +770,20 @@ function openGrowth() {
   growthInterval = setInterval(() => {
     growthIndex++;
     if (growthIndex >= growthPhotos.length) {
-      clearInterval(growthInterval);
-      showGrowthFinalMessage();
-      return;
-    }
+
+    clearInterval(growthInterval);
+
+    // darken background slightly
+    document.getElementById("growthSlideshow")
+        .style.filter = "brightness(60%)";
+
+    setTimeout(() => {
+        showGrowthFinalMessage();
+    }, 1200);
+
+    return;
+}
+
     showGrowthImage();
   }, 3000);
 }
@@ -909,6 +919,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
