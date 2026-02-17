@@ -197,23 +197,25 @@
   z-index: -1;
 }
 #growthSlideshow {
-    width: 90%;
-    max-width: 450px;
-    height: 500px;
-    margin: 20px auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    background: #000; /* makes empty space look elegant */
+  width: 95%;
+  max-width: 700px;      /* Bigger */
+  height: 75vh;          /* Large and visible */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  position: relative;
 }
 
 #growthImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* 🔥 THIS makes it fill beautifully */
-    border-radius: 20px;
-    transition: opacity 1s ease, transform 6s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* Makes ALL photos same alignment */
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transition: opacity 1s ease;
 }
+
 
 
     
@@ -847,6 +849,17 @@ function showGrowthFinalMessage() {
 function showGrowthFinalPopup() {
     document.getElementById("growthFinalPopup").style.display = "flex";
 }
+function showGrowthFinalMessage() {
+  setTimeout(() => {
+    document.getElementById("growthFinalPopup").style.display = "flex";
+  }, 800);
+}
+
+function closeGrowthPopup() {
+  document.getElementById("growthFinalPopup").style.display = "none";
+}
+
+  
   
 
 </script>
@@ -948,37 +961,36 @@ Happiest Birthday, and always wishing you happiness 🌼
   <div class="surprise-card">
     <h2>🌷 Watching You Grow</h2>
     <p>
-      From that classroom in 5th standard 🏫  
-      to the person you are today… 🌸<br><br>
+      From that classroom in 5th standard 🏫✨  
+      to the person you are today…  
 
-      I’ve known you for several years now —  
-      watching you grow into someone strong, graceful,  
-      and beautiful in your own way ✨🤍<br><br>
+      We’ve grown in different directions,  
+      chasing different dreams —  
+      yet somehow we’ve always stayed connected 🤍  
 
-      We’ve grown up in different directions,  
-      chasing different dreams, becoming different versions of ourselves —  
-      yet somehow, we’ve always found a way to stay connected 💫<br><br>
-
-      Maybe that’s what makes this bond special.  
-      It was never loud, never forced —  
-      just steady, familiar, and quietly important 🤍<br><br>
-
-      Watching your journey has truly been something special 🌷  
-      and I’m genuinely proud of the person you’ve become ✨<br><br>
+      Maybe that’s what makes this bond special —  
+      never loud, never forced,  
+      just steady and quietly important 💫  
 
       Whatever life turns us into,  
       I hope this part of us —  
       this quiet, strong bond —  
       always remains 🤍
     </p>
+
+    <button onclick="closeGrowthPopup()" style="margin-top:20px;">
+      Close 💌
+    </button>
   </div>
 </div>
+
 
     
     
     
 </body>
 </html>
+
 
 
 
