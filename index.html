@@ -830,24 +830,12 @@ function closeGrowth() {
   document.getElementById("growthSlideshow").style.display = "none";
 }
 
-function showGrowthFinalMessage() {
-  const container = document.querySelector("#growthSlideshow .surprise-card");
 
-  const message = document.createElement("p");
-  message.innerHTML = `
-    <br><br>
-    From a little girl to a strong and beautiful woman 🌷✨<br>
-    You’ve grown through everything with strength and grace 💛<br><br>
-    I’m really proud of the person you’ve become.
-  `;
-  message.style.marginTop = "15px";
-  message.style.fontSize = "1rem";
-
-  container.appendChild(message);
-}
 
 function showGrowthFinalPopup() {
     document.getElementById("growthFinalPopup").style.display = "flex";
+    document.getElementById("growthSlideshow").style.filter = "blur(4px)";
+ 
 }
 function showGrowthFinalMessage() {
   setTimeout(() => {
@@ -857,6 +845,8 @@ function showGrowthFinalMessage() {
 
 function closeGrowthPopup() {
   document.getElementById("growthFinalPopup").style.display = "none";
+  document.getElementById("growthSlideshow").style.filter = "none";
+
 }
 
   
@@ -905,43 +895,8 @@ Happiest Birthday, and always wishing you happiness 🌼
 
   </div>
 </div>
-<!-- Growing Up Slideshow -->
-<div id="growthSlideshow" class="surprise-overlay" style="display:none;">
-  <div class="surprise-card" style="max-width:90%;">
-
-    <h2>🌸 From Then To Now 🌸</h2>
-
-    <p style="font-size:0.9rem; opacity:0.9;">
-      Watching you grow has been beautiful 🤍
-    </p>
-
-    <img id="growthImage">
 
 
-    <p id="growthCaption" 
-       style="margin-top:12px; font-size:0.95rem;">
-      The little girl who started it all 🌱
-    </p>
-
-    <button onclick="closeGrowth()" style="margin-top:15px;">
-      Close 💛
-    </button>
-
-  </div>
-</div>
-
-<!-- Growth Slideshow Overlay -->
-<div id="growthOverlay" class="surprise-overlay" style="display:none;">
-  <div class="surprise-card" style="max-width:500px;">
-
-    <h2>From Then… To Now ✨</h2>
-
-    <img id="growthImage" 
-         src="photo1.jpg" 
-         style="width:100%; border-radius:20px; margin-top:15px;">
-
-  </div>
-</div>
 <!-- Growth Slideshow Overlay -->
 <div id="growthSlideshow" class="surprise-overlay" style="display:none;">
   <div class="surprise-card" style="max-width:90%;">
@@ -990,6 +945,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
