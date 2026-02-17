@@ -197,23 +197,24 @@
   z-index: -1;
 }
 #growthSlideshow {
-  width: 90%;
-  max-width: 450px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-  overflow: hidden;
+    width: 90%;
+    max-width: 450px;
+    height: 500px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #000; /* makes empty space look elegant */
 }
 
 #growthImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* prevents stretching */
-  border-radius: 20px;
-  transition: opacity 1s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* 🔥 THIS makes it fill beautifully */
+    border-radius: 20px;
+    transition: opacity 1s ease, transform 6s ease;
 }
+
 
     
 
@@ -788,16 +789,14 @@ function openGrowth() {
   growthInterval = setInterval(() => {
     growthIndex++;
     if (growthIndex >= growthPhotos.length) {
-
     clearInterval(growthInterval);
 
-    // darken background slightly
-    document.getElementById("growthSlideshow")
-        .style.filter = "brightness(60%)";
+    growthIndex = growthPhotos.length - 1;
+    showGrowthImage();
 
     setTimeout(() => {
-        showGrowthFinalMessage();
-    }, 1200);
+        showGrowthFinalPopup();
+    }, 2000);
 
     return;
 }
@@ -807,13 +806,21 @@ function openGrowth() {
 }
 
 function showGrowthImage() {
-  const img = document.getElementById("growthImage");
-  img.style.opacity = 0;
+    const img = document.getElementById("growthImage");
 
-  setTimeout(() => {
-    img.src = growthPhotos[growthIndex];
-    img.style.opacity = 1;
-  }, 500);
+    img.style.opacity = 0;
+    img.style.transform = "scale(1)";
+
+    setTimeout(() => {
+        img.src = growthPhotos[growthIndex];
+        img.style.opacity = 1;
+
+        // 🔥 Slow zoom effect
+        setTimeout(() => {
+            img.style.transform = "scale(1.08)";
+        }, 200);
+
+    }, 300);
 }
 
 function closeGrowth() {
@@ -836,6 +843,11 @@ function showGrowthFinalMessage() {
 
   container.appendChild(message);
 }
+
+function showGrowthFinalPopup() {
+    document.getElementById("growthFinalPopup").style.display = "flex";
+}
+  
 
 </script>
  
@@ -932,10 +944,42 @@ Happiest Birthday, and always wishing you happiness 🌼
 
   </div>
 </div>
+<div id="growthFinalPopup" class="surprise-overlay" style="display:none;">
+  <div class="surprise-card">
+    <h2>🌷 Watching You Grow</h2>
+    <p>
+      From that classroom in 5th standard 🏫  
+      to the person you are today… 🌸<br><br>
+
+      I’ve known you for several years now —  
+      watching you grow into someone strong, graceful,  
+      and beautiful in your own way ✨🤍<br><br>
+
+      We’ve grown up in different directions,  
+      chasing different dreams, becoming different versions of ourselves —  
+      yet somehow, we’ve always found a way to stay connected 💫<br><br>
+
+      Maybe that’s what makes this bond special.  
+      It was never loud, never forced —  
+      just steady, familiar, and quietly important 🤍<br><br>
+
+      Watching your journey has truly been something special 🌷  
+      and I’m genuinely proud of the person you’ve become ✨<br><br>
+
+      Whatever life turns us into,  
+      I hope this part of us —  
+      this quiet, strong bond —  
+      always remains 🤍
+    </p>
+  </div>
+</div>
+
+    
     
     
 </body>
 </html>
+
 
 
 
