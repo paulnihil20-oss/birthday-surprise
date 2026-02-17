@@ -271,6 +271,11 @@
         style="display:none; margin-top:20px;">
   Open Our Memory Vault 📸
 </button>
+
+<button onclick="openGrowth()" style="margin-top:20px;">
+  See How You’ve Grown 🌷
+</button>
+     
      
 
 
@@ -778,9 +783,48 @@ Happiest Birthday, and always wishing you happiness 🌼
 
   </div>
 </div>
+<!-- Growing Up Slideshow -->
+<div id="growthSlideshow" class="surprise-overlay" style="display:none;">
+  <div class="surprise-card" style="max-width:90%;">
+
+    <h2>🌸 From Then To Now 🌸</h2>
+
+    <p style="font-size:0.9rem; opacity:0.9;">
+      Watching you grow has been beautiful 🤍
+    </p>
+
+    <img id="growthImage"
+         src="year1.jpeg"
+         style="width:100%; border-radius:20px; margin-top:15px; transition:opacity 1s ease;">
+
+    <p id="growthCaption" 
+       style="margin-top:12px; font-size:0.95rem;">
+      The little girl who started it all 🌱
+    </p>
+
+    <button onclick="closeGrowth()" style="margin-top:15px;">
+      Close 💛
+    </button>
+
+  </div>
+</div>
+
+<!-- Growth Slideshow Overlay -->
+<div id="growthOverlay" class="surprise-overlay" style="display:none;">
+  <div class="surprise-card" style="max-width:500px;">
+
+    <h2>From Then… To Now ✨</h2>
+
+    <img id="growthImage" 
+         src="photo1.jpg" 
+         style="width:100%; border-radius:20px; margin-top:15px;">
+
+  </div>
+</div>
     
 </body>
 </html>
+
 
 
 
