@@ -798,28 +798,29 @@ let growthIndex = 0;
 let growthInterval;
 
 function openGrowth() {
-  document.getElementById("").style.display = "flex";
+  document.getElementById("growthSlideshow").style.display = "flex";
   growthIndex = 0;
   showGrowthImage();
 
   growthInterval = setInterval(() => {
     growthIndex++;
+
     if (growthIndex >= growthPhotos.length) {
-    clearInterval(growthInterval);
+      clearInterval(growthInterval);
+      growthIndex = growthPhotos.length - 1;
+      showGrowthImage();
 
-    growthIndex = growthPhotos.length - 1;
-    showGrowthImage();
-
-    setTimeout(() => {
+      setTimeout(() => {
         showGrowthFinalPopup();
-    }, 2000);
+      }, 2000);
 
-    return;
-}
+      return;
+    }
 
     showGrowthImage();
   }, 3000);
 }
+
 
 function showGrowthImage() {
     const img = document.getElementById("growthImage");
@@ -841,16 +842,17 @@ function showGrowthImage() {
 
 function closeGrowth() {
   clearInterval(growthInterval);
-  document.getElementById("").style.display = "none";
+  document.getElementById("growthSlideshow").style.display = "none";
 }
+
 
 
 
 function showGrowthFinalPopup() {
-    document.getElementById("growthFinalPopup").style.display = "flex";
-    document.getElementById("").style.filter = "blur(4px)";
- 
+  document.getElementById("growthFinalPopup").style.display = "flex";
+  document.getElementById("growthSlideshow").style.filter = "blur(4px)";
 }
+
 function showGrowthFinalMessage() {
   setTimeout(() => {
     document.getElementById("growthFinalPopup").style.display = "flex";
@@ -859,8 +861,7 @@ function showGrowthFinalMessage() {
 
 function closeGrowthPopup() {
   document.getElementById("growthFinalPopup").style.display = "none";
-  document.getElementById("").style.filter = "none";
-
+  document.getElementById("growthSlideshow").style.filter = "none";
 }
 
   
@@ -959,6 +960,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
