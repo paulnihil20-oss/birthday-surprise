@@ -272,9 +272,10 @@
   Open Our Memory Vault 📸
 </button>
 
-<button onclick="openGrowth()" style="margin-top:20px;">
-  See How You’ve Grown 🌷
+<button onclick="openGrowth()" style="margin-top:15px;">
+  See Your Journey 🌸
 </button>
+
      
      
 
@@ -739,6 +740,74 @@ function closeVault() {
   document.getElementById("memoryVault").style.display = "none";
 }
   
+// Growth Slideshow
+const growthPhotos = [
+  "photo1.jpeg",
+  "photo2.jpeg",
+  "photo3.jpeg",
+  "photo4.jpeg",
+  "photo5.jpeg",
+  "photo6.jpeg",
+  "photo7.jpeg",
+  "photo8.jpeg",
+  "photo9.jpeg",
+  "photo10.jpeg",
+  "photo11.jpeg",
+  "photo12.jpeg",
+  "photo13.jpeg",
+  "photo14.jpeg",
+  "photo15.jpeg"
+];
+
+let growthIndex = 0;
+let growthInterval;
+
+function openGrowth() {
+  document.getElementById("growthSlideshow").style.display = "flex";
+  growthIndex = 0;
+  showGrowthImage();
+
+  growthInterval = setInterval(() => {
+    growthIndex++;
+    if (growthIndex >= growthPhotos.length) {
+      clearInterval(growthInterval);
+      showGrowthFinalMessage();
+      return;
+    }
+    showGrowthImage();
+  }, 3000);
+}
+
+function showGrowthImage() {
+  const img = document.getElementById("growthImage");
+  img.style.opacity = 0;
+
+  setTimeout(() => {
+    img.src = growthPhotos[growthIndex];
+    img.style.opacity = 1;
+  }, 500);
+}
+
+function closeGrowth() {
+  clearInterval(growthInterval);
+  document.getElementById("growthSlideshow").style.display = "none";
+}
+
+function showGrowthFinalMessage() {
+  const container = document.querySelector("#growthSlideshow .surprise-card");
+
+  const message = document.createElement("p");
+  message.innerHTML = `
+    <br><br>
+    From a little girl to a strong and beautiful woman 🌷✨<br>
+    You’ve grown through everything with strength and grace 💛<br><br>
+    I’m really proud of the person you’ve become.
+  `;
+  message.style.marginTop = "15px";
+  message.style.fontSize = "1rem";
+
+  container.appendChild(message);
+}
 
 </script>
  
@@ -821,9 +890,26 @@ Happiest Birthday, and always wishing you happiness 🌼
 
   </div>
 </div>
+<!-- Growth Slideshow Overlay -->
+<div id="growthSlideshow" class="surprise-overlay" style="display:none;">
+  <div class="surprise-card" style="max-width:90%;">
+
+    <h2>🌸 Your Beautiful Journey 🌸</h2>
+
+    <img id="growthImage" src="photo1.jpeg"
+         style="width:100%; border-radius:20px; margin-top:15px; transition:opacity 1s ease;">
+
+    <button onclick="closeGrowth()" style="margin-top:20px;">
+      Close Journey 💛
+    </button>
+
+  </div>
+</div>
+    
     
 </body>
 </html>
+
 
 
 
