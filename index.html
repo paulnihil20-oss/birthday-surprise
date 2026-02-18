@@ -230,7 +230,7 @@
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0,0.7);
-  z-index: 2000;
+  z-index: 1500;
 }
 
 /* Small popup card */
@@ -249,6 +249,12 @@
   border-radius: 18px;
   transition: opacity 0.8s ease;
 }
+
+/* Make final popup always appear above slideshow */
+#growthFinalPopup {
+  z-index: 5000 !important;
+}
+    
 
   </style>
 </head>
@@ -972,6 +978,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
