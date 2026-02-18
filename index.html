@@ -255,6 +255,11 @@
   z-index: 5000 !important;
 }
     
+#starNameCanvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
 
   </style>
 </head>
@@ -879,8 +884,83 @@ function showGrowthFinalMessage() {
 
 function closeGrowthPopup() {
   document.getElementById("growthFinalPopup").style.display = "none";
-  document.getElementById("growthSlideshow").style.filter = "none";
+  document.getElementById("growthSlideshow").style.display = "none";
+
+  setTimeout(() => {
+    startStarNameAnimation();
+  }, 800);
 }
+function startStarNameAnimation() {
+  const overlay = document.getElementById("starNameOverlay");
+  const canvas = document.getElementById("starNameCanvas");
+  const ctx = canvas.getContext("2d");
+
+  overlay.style.display = "flex";
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const name = "LAVANTHIKA";
+  const fontSize = 120;
+
+  ctx.font = fontSize + "px Arial";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+  ctx.fillText(name, canvas.width / 2, canvas.height / 2);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const stars = [];
+
+  for (let y = 0; y < canvas.height; y += 6) {
+    for (let x = 0; x < canvas.width; x += 6) {
+      const index = (y * canvas.width + x) * 4;
+      if (imageData.data[index + 3] > 128) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          targetX: x,
+          targetY: y,
+          size: 2
+        });
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach(star => {
+      star.x += (star.targetX - star.x) * 0.08;
+      star.y += (star.targetY - star.y) * 0.08;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Break apart after 5 seconds
+  setTimeout(() => {
+    stars.forEach(star => {
+      star.targetX = Math.random() * canvas.width;
+      star.targetY = Math.random() * canvas.height;
+    });
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 4000);
+
+  }, 5000);
+}
+
+  
 
   
   
@@ -974,10 +1054,14 @@ Happiest Birthday, and always wishing you happiness 🌼
 
 
     
+<div id="starNameOverlay" class="surprise-overlay" style="display:none; background:#0b0c1a;">
+  <canvas id="starNameCanvas"></canvas>
+</div>
     
     
 </body>
 </html>
+
 
 
 
