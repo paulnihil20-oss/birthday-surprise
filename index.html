@@ -219,6 +219,7 @@
   z-index: -1;
 }
 
+/* 🌸 Compact Centered Growth Slideshow */
 #growthSlideshow {
   position: fixed;
   top: 0;
@@ -228,27 +229,27 @@
   display: none;
   justify-content: center;
   align-items: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
   z-index: 2000;
 }
 
-
-
-#growthImage {
-  width: 100%;
-  height: 80%;
-  object-fit: contain;
+/* Compact card */
+#growthSlideshow .surprise-card {
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
   border-radius: 25px;
-  transition: opacity 1s ease, transform 4s ease;
 }
 
-
-
-
-
-    
-
-
-
+/* Fixed ratio image container */
+#growthImage {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* consistent vertical ratio */
+  object-fit: cover;     /* fills area cleanly */
+  border-radius: 20px;
+  transition: opacity 1s ease, transform 4s ease;
+}
 
 
   </style>
@@ -973,6 +974,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
