@@ -530,7 +530,7 @@ if (clickSound) {
     const letterBox = document.getElementById("letter");
     letterBox.scrollTop = letterBox.scrollHeight;
 
-    setTimeout(typeEffect, 90); // slow & emotional
+    setTimeout(typeEffect, 110); // slow & emotional
   } else {
   showMemoryPrompt();
 
@@ -751,30 +751,26 @@ function startConstellation() {
   }
 
   function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let star of stars) {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
-      ctx.fill();
-    }
+  for (let star of stars) {
 
-    for (let i = 0; i < stars.length; i++) {
-      for (let j = i + 1; j < stars.length; j++) {
-        let dx = stars[i].x - stars[j].x;
-        let dy = stars[i].y - stars[j].y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+    // slow floating motion
+    star.x += (Math.random() - 0.5) * 0.2;
+    star.y += (Math.random() - 0.5) * 0.2;
 
-        if (distance < 100) {
-          ctx.beginPath();
-          ctx.moveTo(stars[i].x, stars[i].y);
-          ctx.lineTo(stars[j].x, stars[j].y);
-          ctx.strokeStyle = "rgba(255,255,255,0.2)";
-          ctx.stroke();
-        }
-      }
-    }
+    // gentle glow pulse
+    let glow = Math.random() * 0.5 + 0.5;
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${glow})`;
+    ctx.fill();
+  }
+
+  requestAnimationFrame(drawStars);
+}
+
 
     for (let star of stars) {
       star.x += star.vx;
@@ -884,12 +880,14 @@ function showGrowthFinalMessage() {
 
 function closeGrowthPopup() {
   document.getElementById("growthFinalPopup").style.display = "none";
-  document.getElementById("growthSlideshow").style.display = "none";
+  document.getElementById("growthSlideshow").style.filter = "none";
 
+  // Start cinematic ending
   setTimeout(() => {
-    startStarNameAnimation();
-  }, 800);
+    startStarCinematic();
+  }, 1000);
 }
+
 function startStarNameAnimation() {
   const overlay = document.getElementById("starNameOverlay");
   const canvas = document.getElementById("starNameCanvas");
@@ -982,6 +980,122 @@ function showFinalBlackMessage() {
   }
 
   typeEnding();
+}
+function startStarCinematic() {
+
+  const starScreen = document.getElementById("starCinematicScreen");
+  const canvas = document.getElementById("starCinematicCanvas");
+  const ctx = canvas.getContext("2d");
+
+  starScreen.style.display = "flex";
+
+  setTimeout(() => {
+    starScreen.style.opacity = "1";
+  }, 100);
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = [];
+  const starCount = 120;
+
+  for (let i = 0; i < starCount; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2 + 1
+    });
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let star of stars) {
+
+      star.x += (Math.random() - 0.5) * 0.2;
+      star.y += (Math.random() - 0.5) * 0.2;
+
+      let glow = Math.random() * 0.5 + 0.5;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${glow})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(drawStars);
+  }
+
+  drawStars();
+
+  // Slow zoom
+  canvas.style.transition = "transform 10s ease";
+  setTimeout(() => {
+    canvas.style.transform = "scale(1.1)";
+  }, 200);
+
+  // Fade name
+  setTimeout(() => {
+    const name = document.getElementById("starNameText");
+    name.style.opacity = "1";
+    name.style.textShadow = "0 0 25px rgba(255,255,255,0.8)";
+  }, 2000);
+
+  // After few seconds go to final message
+  setTimeout(() => {
+    starScreen.style.opacity = "0";
+
+    setTimeout(() => {
+      starScreen.style.display = "none";
+      startFinalBlackMessage();
+    }, 2000);
+
+  }, 8000);
+}
+function startFinalBlackMessage() {
+
+  const finalScreen = document.createElement("div");
+  finalScreen.id = "finalBlackScreen";
+  finalScreen.style = `
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Patrick Hand', cursive;
+    font-size:1.8rem;
+    z-index:5000;
+  `;
+
+  const text = document.createElement("div");
+  text.id = "finalTypedText";
+  finalScreen.appendChild(text);
+
+  document.body.appendChild(finalScreen);
+
+  const message = "Happiest Birthday once again 🤍\nYou were never just a chapter.";
+
+  let i = 0;
+
+  function typeFinal() {
+    if (i < message.length) {
+      text.innerHTML += message[i] === "\n" ? "<br>" : message[i];
+      i++;
+      setTimeout(typeFinal, 140);
+    } else {
+      setTimeout(() => {
+        text.innerHTML += "<br><br>— Paul";
+      }, 2000);
+    }
+  }
+
+  typeFinal();
 }
 
   
@@ -1101,9 +1215,41 @@ Happiest Birthday, and always wishing you happiness 🌼
 ">
   <div id="finalTypedText"></div>
 </div>
+<!-- ⭐ Cinematic Star Ending -->
+<div id="starCinematicScreen" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:black;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:4000;
+  opacity:0;
+  transition:opacity 2s ease;
+">
+
+  <canvas id="starCinematicCanvas"></canvas>
+
+  <h1 id="starNameText" style="
+    position:absolute;
+    color:white;
+    font-size:3rem;
+    letter-spacing:8px;
+    opacity:0;
+    transition:opacity 3s ease, text-shadow 3s ease;
+  ">
+    Lavanthika
+  </h1>
+
+</div>
     
 </body>
 </html>
+
 
 
 
