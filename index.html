@@ -366,23 +366,22 @@
 <script>
 let chimePlayed = false;
 const TEST_MODE = false;  // change to false on Feb 22
-const now = new Date();
-
-const TEST_MODE = false;
-
+// 🎂 Birthday Countdown Logic
 const now = new Date();
 let year = now.getFullYear();
 
-let birthdayDate = new Date(year, 1, 22, 0, 0, 0); // Feb 22
+// Feb 22
+let birthdayDate = new Date(year, 1, 22, 0, 0, 0);
 
+// If birthday passed this year, set next year
 if (now > birthdayDate) {
   birthdayDate = new Date(year + 1, 1, 22, 0, 0, 0);
 }
 
 const birthday = birthdayDate.getTime();
+let isBirthday = TEST_MODE ? true : false;
 const correctPassword = "064500";
 
-let isBirthday = TEST_MODE ? true : false;
 
 
 
@@ -1247,6 +1246,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
