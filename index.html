@@ -728,6 +728,7 @@ function checkPassword() {
   }
 }
 function startConstellation() {
+
   const canvas = document.getElementById("constellationCanvas");
   const ctx = canvas.getContext("2d");
 
@@ -736,63 +737,33 @@ function startConstellation() {
   canvas.height = window.innerHeight;
 
   const stars = [];
+  const starCount = 80;
 
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < starCount; i++) {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1
+      size: Math.random() * 2 + 1,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3
     });
   }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    stars.forEach(star => {
-      star.x += (Math.random() - 0.5) * 0.3;
-      star.y += (Math.random() - 0.5) * 0.3;
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255,255,255,0.8)";
-      ctx.fill();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-}
-
 
   function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let star of stars) {
-
-    // slow floating motion
-    star.x += (Math.random() - 0.5) * 0.2;
-    star.y += (Math.random() - 0.5) * 0.2;
-
-    // gentle glow pulse
-    let glow = Math.random() * 0.5 + 0.5;
-
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,255,255,${glow})`;
-    ctx.fill();
-  }
-
-  requestAnimationFrame(drawStars);
-}
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let star of stars) {
+
       star.x += star.vx;
       star.y += star.vy;
 
       if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
       if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
     }
 
     requestAnimationFrame(drawStars);
@@ -800,6 +771,7 @@ function startConstellation() {
 
   drawStars();
 }
+
 
 function openVault() {
   document.getElementById("memoryVault").style.display = "flex";
@@ -1246,6 +1218,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
