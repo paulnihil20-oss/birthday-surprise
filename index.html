@@ -367,18 +367,16 @@
 let chimePlayed = false;
 const TEST_MODE = false;  // change to false on Feb 22
 // 🎂 Birthday Countdown Logic
-const now = new Date();
-let year = now.getFullYear();
 
-// Feb 22
-let birthdayDate = new Date(year, 1, 22, 0, 0, 0);
+const birthdayStart = new Date(now.getFullYear(), 1, 22, 0, 0, 0);  // Feb 22 12:00 AM
+const birthdayEnd = new Date(now.getFullYear(), 1, 23, 0, 0, 0);    // Feb 23 12:00 AM
 
-// If birthday passed this year, set next year
-if (now > birthdayDate) {
-  birthdayDate = new Date(year + 1, 1, 22, 0, 0, 0);
+let isBirthday = false;
+
+if (now >= birthdayStart && now < birthdayEnd) {
+  isBirthday = true;
 }
 
-const birthday = birthdayDate.getTime();
 let isBirthday = TEST_MODE ? true : false;
 const correctPassword = "064500";
 
@@ -397,43 +395,31 @@ const unlockBtn = document.getElementById("unlockBtn");
 const hintEl = document.getElementById("passwordHint");
 const openBtn = document.getElementById("openBtn");
 
+
+
+
 const countdownInterval = setInterval(() => {
 
   const now = new Date().getTime();
-  const diff = birthday - now;
 
-  if (diff <= 0 || TEST_MODE) {
-  isBirthday = true;
-  
+  if (now >= birthdayStart && now < birthdayEnd) {
 
+    isBirthday = true;
 
-  timerEl.innerHTML = "🎉 It’s your day now 💛";
-  titleEl.innerHTML = "It’s time ✨";
+    timerEl.innerHTML = "🎉 It’s your day now 💛";
+    titleEl.innerHTML = "It’s time ✨";
 
-  passwordInput.disabled = false;
-  passwordInput.placeholder = "Enter the special hour 💫";
-  unlockBtn.innerText = "Unlock 🎁";
+    passwordInput.disabled = false;
+    passwordInput.placeholder = "Enter the special hour 💫";
+    unlockBtn.innerText = "Unlock 🎁";
 
-  if (TEST_MODE) {
-  timerEl.innerHTML = "🧪 Test Mode Active";
-  titleEl.innerHTML = "Testing Surprise ✨";
-}
-
-
-  // 🔔 Play chime ONCE
-  if (!chimePlayed) {
-    const chime = document.getElementById("chimeSound");
-    if (chime) {
-      chime.volume = 0.6;
-      chime.play();
-    }
-    chimePlayed = true;
-
+    clearInterval(countdownInterval);
+    return;
   }
-  clearInterval(countdownInterval);
 
-  return;
-}
+  const diff = birthdayStart - now;
+
+  if (diff <= 0) return;
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -442,8 +428,12 @@ const countdownInterval = setInterval(() => {
 
   timerEl.innerHTML =
     `${days} days ${hours} hrs ${minutes} min ${seconds} sec`;
+
 }, 1000);
 
+  
+
+  
   const message = `
 To the person who’s been a part of my life as a good friend since my childhood, 🌱
 
@@ -1218,6 +1208,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
