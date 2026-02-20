@@ -6,7 +6,7 @@
   <title>Happy Birthday 🎉</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -478,8 +478,9 @@ Stay amazing, always. 🌷
     // Play music after user tap
     const music = document.getElementById("bgm");
     if (music) {
-  music.volume = 1;
-  music.play();
+       music.volume = 1;
+      
+      music.play();
 const clickSound = document.getElementById("unlockSound");
 if (clickSound) {
   clickSound.volume = 0;
@@ -863,7 +864,6 @@ function closeGrowthPopup() {
 function startFinalBlackMessage() {
 
   const finalScreen = document.createElement("div");
-  finalScreen.id = "finalBlackScreen";
   finalScreen.style = `
     position:fixed;
     top:0;
@@ -876,51 +876,74 @@ function startFinalBlackMessage() {
     justify-content:center;
     align-items:center;
     text-align:center;
-    font-family:'Patrick Hand', cursive;
-    font-size:1.8rem;
+    font-family:'Great Vibes', cursive;
+    font-size:2.6rem;
+    letter-spacing:1px;
+    line-height:1.6;
     z-index:5000;
+    opacity:0;
+    transition:opacity 2s ease;
   `;
-  const music = document.getElementById("bgm");
-  if (music) {
-    let fade = setInterval(() => {
-      if (music.volume > 0.3) {
-        music.volume -= 0.02;
-      } else {
-        clearInterval(fade);
-      }
-    }, 200);
-  }
+
   const text = document.createElement("div");
-  text.id = "finalTypedText";
+  text.style.textShadow = "0 0 15px rgba(255,255,255,0.6)";
   finalScreen.appendChild(text);
 
   document.body.appendChild(finalScreen);
 
-  const message = "Happiest Birthday once again 🤍\nYou were never just a chapter.";
+  // 🌙 Fade in effect
+  setTimeout(() => {
+    finalScreen.style.opacity = "1";
+  }, 100);
+
+  const message = "Happiest Birthday once again 🤍\n\nYou were never just a chapter.";
 
   let i = 0;
 
   function typeFinal() {
     if (i < message.length) {
-      text.innerHTML += message[i] === "\n" ? "<br>" : message[i];
+      text.innerHTML += message[i] === "\n" ? "<br><br>" : message[i];
       i++;
-      setTimeout(typeFinal, 150);
+      setTimeout(typeFinal, 170);
     } else {
+
+      // ✍️ Add signature smaller & softer
       setTimeout(() => {
-        text.innerHTML += "<br><br>— Paul";
-      }, 2000);
+        const signature = document.createElement("div");
+        signature.innerHTML = "— Paul";
+        signature.style.fontSize = "1.6rem";
+        signature.style.marginTop = "30px";
+        signature.style.opacity = "0";
+        signature.style.transition = "opacity 2s ease";
+        finalScreen.appendChild(signature);
+
+        setTimeout(() => {
+          signature.style.opacity = "1";
+        }, 100);
+
+      }, 1500);
     }
-
-
-    
   }
 
   typeFinal();
+
+  // 💫 Gentle glowing pulse animation
+  let glow = 15;
+  let increasing = true;
+
+  setInterval(() => {
+    if (increasing) {
+      glow += 1;
+      if (glow >= 25) increasing = false;
+    } else {
+      glow -= 1;
+      if (glow <= 15) increasing = true;
+    }
+
+    text.style.textShadow = `0 0 ${glow}px rgba(255,255,255,0.7)`;
+
+  }, 120);
 }
-
-  
-
-  
   
 
 </script>
@@ -1022,3 +1045,4 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
