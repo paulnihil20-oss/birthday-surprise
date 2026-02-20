@@ -854,155 +854,12 @@ function closeGrowthPopup() {
   document.getElementById("growthFinalPopup").style.display = "none";
   document.getElementById("growthSlideshow").style.filter = "none";
 
-  // Start cinematic ending
   setTimeout(() => {
-    startStarCinematic();
-  }, 1000);
+    startFinalBlackMessage();
+  }, 800);
 }
 
-function startStarNameAnimation() {
-  const overlay = document.getElementById("starNameOverlay");
-  const canvas = document.getElementById("starNameCanvas");
-  const ctx = canvas.getContext("2d");
 
-  overlay.style.display = "flex";
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const name = "Lavanthika";
-  const fontSize = 120;
-
-  ctx.font = fontSize + "px Arial";
-  ctx.fillStyle = "white";
-  ctx.textAlign = "center";
-  ctx.fillText(name, canvas.width / 2, canvas.height / 2);
-
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const stars = [];
-
-  for (let y = 0; y < canvas.height; y += 6) {
-    for (let x = 0; x < canvas.width; x += 6) {
-      const index = (y * canvas.width + x) * 4;
-      if (imageData.data[index + 3] > 128) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          targetX: x,
-          targetY: y,
-          size: 2
-        });
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    stars.forEach(star => {
-      star.x += (star.targetX - star.x) * 0.08;
-      star.y += (star.targetY - star.y) * 0.08;
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
-      ctx.fill();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // Break apart after 5 seconds
-  setTimeout(() => {
-  stars.forEach(star => {
-    star.targetX = Math.random() * canvas.width;
-    star.targetY = Math.random() * canvas.height;
-  });
-
-  setTimeout(() => {
-    overlay.style.display = "none";
-    showFinalBlackMessage();
-  }, 4000);
-
-}, 5000);
-
-}
-
-function startStarCinematic() {
-
-  const starScreen = document.getElementById("starCinematicScreen");
-  const canvas = document.getElementById("starCinematicCanvas");
-  const ctx = canvas.getContext("2d");
-
-  starScreen.style.display = "flex";
-
-  setTimeout(() => {
-    starScreen.style.opacity = "1";
-  }, 100);
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const stars = [];
-  const starCount = 120;
-
-  for (let i = 0; i < starCount; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1
-    });
-  }
-
-  function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let star of stars) {
-
-      star.x += (Math.random() - 0.5) * 0.2;
-      star.y += (Math.random() - 0.5) * 0.2;
-
-      let glow = Math.random() * 0.5 + 0.5;
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${glow})`;
-      ctx.fill();
-    }
-
-    requestAnimationFrame(drawStars);
-  }
-
-  drawStars();
-
-  // Slow zoom
-  canvas.style.transition = "transform 10s ease";
-  setTimeout(() => {
-    canvas.style.transform = "scale(1.1)";
-  }, 200);
-
-  // Fade name
-  setTimeout(() => {
-    const name = document.getElementById("starNameText");
-    name.style.opacity = "1";
-    name.style.textShadow = "0 0 25px rgba(255,255,255,0.8)";
-  }, 2000);
-
-  // After few seconds go to final message
-  setTimeout(() => {
-    starScreen.style.opacity = "0";
-
-    setTimeout(() => {
-      starScreen.style.display = "none";
-      startFinalBlackMessage();
-    }, 2000);
-
-  }, 8000);
-}
 function startFinalBlackMessage() {
 
   const finalScreen = document.createElement("div");
@@ -1023,7 +880,16 @@ function startFinalBlackMessage() {
     font-size:1.8rem;
     z-index:5000;
   `;
-
+  const music = document.getElementById("bgm");
+  if (music) {
+    let fade = setInterval(() => {
+      if (music.volume > 0.3) {
+        music.volume -= 0.02;
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
+  }
   const text = document.createElement("div");
   text.id = "finalTypedText";
   finalScreen.appendChild(text);
@@ -1038,7 +904,7 @@ function startFinalBlackMessage() {
     if (i < message.length) {
       text.innerHTML += message[i] === "\n" ? "<br>" : message[i];
       i++;
-      setTimeout(typeFinal, 140);
+      setTimeout(typeFinal, 150);
     } else {
       setTimeout(() => {
         text.innerHTML += "<br><br>— Paul";
@@ -1146,86 +1012,13 @@ Happiest Birthday, and always wishing you happiness 🌼
 
 
     
-<div id="starNameOverlay" class="surprise-overlay" style="display:none; background:#0b0c1a;">
-  <canvas id="starNameCanvas"></canvas>
-</div>
+
     
 
   <div id="finalTypedText"></div>
 </div>
 <!-- ⭐ Cinematic Star Ending -->
-<div id="starCinematicScreen" style="
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:black;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  z-index:4000;
-  opacity:0;
-  transition:opacity 2s ease;
-">
 
-  <canvas id="starCinematicCanvas"></canvas>
-
-  <h1 id="starNameText" style="
-    position:absolute;
-    color:white;
-    font-size:3rem;
-    letter-spacing:8px;
-    opacity:0;
-    transition:opacity 3s ease, text-shadow 3s ease;
-  ">
-    Lavanthika
-  </h1>
-
-</div>
     
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
