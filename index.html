@@ -364,29 +364,27 @@
 <canvas id="constellationCanvas"></canvas>
 
 <script>
-let chimePlayed = false;
-const TEST_MODE = false;  // change to false on Feb 22
-// 🎂 Birthday Countdown Logic
 
-const birthdayStart = new Date(now.getFullYear(), 1, 22, 0, 0, 0);  // Feb 22 12:00 AM
-const birthdayEnd = new Date(now.getFullYear(), 1, 23, 0, 0, 0);    // Feb 23 12:00 AM
+let chimePlayed = false;
+const TEST_MODE = false; // turn true for testing
+
+// Get current time
+const now = new Date();
+
+// Feb 22 12:00 AM
+const birthdayStart = new Date(now.getFullYear(), 1, 22, 0, 0, 0);
+// Feb 23 12:00 AM
+const birthdayEnd = new Date(now.getFullYear(), 1, 23, 0, 0, 0);
 
 let isBirthday = false;
 
-if (now >= birthdayStart && now < birthdayEnd) {
+if (TEST_MODE) {
+  isBirthday = true;
+} else if (now >= birthdayStart && now < birthdayEnd) {
   isBirthday = true;
 }
 
-let isBirthday = TEST_MODE ? true : false;
 const correctPassword = "064500";
-
-
-
-
-
-
-
-
 
 const timerEl = document.getElementById("countdownTimer");
 const titleEl = document.getElementById("countdownTitle");
@@ -395,14 +393,11 @@ const unlockBtn = document.getElementById("unlockBtn");
 const hintEl = document.getElementById("passwordHint");
 const openBtn = document.getElementById("openBtn");
 
-
-
-
 const countdownInterval = setInterval(() => {
 
-  const now = new Date().getTime();
+  const currentTime = new Date();
 
-  if (now >= birthdayStart && now < birthdayEnd) {
+  if (TEST_MODE || (currentTime >= birthdayStart && currentTime < birthdayEnd)) {
 
     isBirthday = true;
 
@@ -417,7 +412,7 @@ const countdownInterval = setInterval(() => {
     return;
   }
 
-  const diff = birthdayStart - now;
+  const diff = birthdayStart - currentTime;
 
   if (diff <= 0) return;
 
@@ -1155,23 +1150,7 @@ Happiest Birthday, and always wishing you happiness 🌼
   <canvas id="starNameCanvas"></canvas>
 </div>
     
-<div id="finalBlackScreen" style="
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:black;
-  color:white;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:6000;
-  font-family:'Patrick Hand', cursive;
-  font-size:2rem;
-  padding:20px;
-">
+
   <div id="finalTypedText"></div>
 </div>
 <!-- ⭐ Cinematic Star Ending -->
@@ -1208,6 +1187,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
