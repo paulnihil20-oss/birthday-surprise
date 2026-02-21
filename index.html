@@ -125,23 +125,28 @@
 
 /* 🌷 Compact Growth Final Popup Only */
 #growthFinalPopup .surprise-card {
-  max-width: 420px;
-  width: 85%;
-  padding: 22px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1e1f3a, #2b2d5e);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+  width: 480px;              /* slightly wider */
+  max-width: 92%;
+  max-height: 75vh;          /* prevent full screen overflow */
+  overflow-y: auto;          /* scroll if long */
+  padding: 28px 30px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1c1d36, #26285a);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7);
   animation: popUp 0.8s ease;
+  backdrop-filter: blur(12px);
+  
 }
 
 #growthFinalPopup h2 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
 }
 
 #growthFinalPopup p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
 }
     
 
@@ -429,42 +434,67 @@ const countdownInterval = setInterval(() => {
 
   
   const message = `
-To the person who’s been a part of my life as a good friend since my childhood, 🌱
+To the person who has been a part of my life since childhood, 🌱
 
 Happy Birthday 🎂💖
 
-This is my birthday wish for you after two years… 🕊️
+It feels strange and special writing this after two years…🕊️
 
-We’ve been part of each other’s lives for so many years now.
-I still remember how our journey started — when we met in 5th standard 🏫✨
+Back then, I never imagined that the girl I barely knew would become someone I would carry with me through so many phases of life.
 
-Back then, I honestly never thought we would still be friends after all these years.
-We were both selected as class representatives in 5A2. I didn’t even know you existed in the school before that.
-When I first came to the class and ma’am automatically selected you as the class leader, I thought you were one of those students who would always top the class — disciplined, perfect, and serious 📚⭐
+We’ve been part of each other’s lives for so long now.
+And I still remember how it all began — 5th standard, that classroom, that unexpected start 🏫✨
 
-What happened after that became one of the happiest memories of my school life 💫
+Back then, I never imagined we would still be connected years later.
+We were both chosen as class representatives of 5A2 — and honestly, I didn’t even know you existed in the school before that day.
 
-After 5th standard, we weren’t in the same class until 10th. Even then, things didn’t work out the way we expected. You were the one the school management believed would top the school 🏆✨
-Unfortunately, we didn’t end up in the same class, and that day became the last time we met in person.
+When ma’am selected you as the class leader, I thought you were one of those students who would always top the class — disciplined, focused, almost untouchable in a way 📚⭐
+I didn’t know that one day, you would become one of the most familiar and comforting people in my life.
 
-That felt like the last intersection point of our lives… 🌙
-And yet, even after that, we always knew what was going on in each other’s lives 🤍
+After 5th, life took us into different classrooms, different sections, different routines.
+We met again in 10th, and even then things didn’t go as expected.
+You were the one everyone believed would top the school 🏆✨
 
-I’m truly grateful that you’ve been part of my journey till now, and I hope it continues 🌼
+And then that day came — the last time we saw each other in person.
+It felt like the final intersection point of two lines that once met so naturally 🌙
 
-I think you are much stronger and more mature than me.Sometimes, I feel like one of those younger ones who goes to their comfort person whenever they feel low 🫂
-You’ve always been the person I turn to when something goes wrong or when a day just feels off 🌧️➡️🌤️
+But somehow… even after that, we never really drifted apart.
 
-I hope you grow into an even better and stronger version of yourself 💪✨
-I hope you enjoy your college life 🎓, find happiness in what you do, and someday find the right person who truly suits you 💞
+We grew in different directions.
+We chased different dreams.
+We became different versions of ourselves.
+Yet, we always knew what was happening in each other’s lives 🤍
 
-And finally — whenever you feel low, or when you want to share something with someone, remember that I’ll always be there when you need me 🤍🫶
+That quiet continuity means more than I can explain.
 
-You deserve all the happiness, success, and love this world has to offer ✨
-May this year bring you beautiful surprises, big smiles, and dreams coming true 💫🌸
+I’m truly grateful that you’ve been part of my journey all these years —
+and I genuinely hope you remain part of it for many more 🌼
+
+There’s something about you that I’ve always admired.
+Your strength.
+Your maturity.
+The way you handle things silently but firmly.
+
+Sometimes I feel like I’m the younger one — the one who goes to their comfort person whenever something feels heavy 🫂
+And more often than not, that comfort person has been you.
+
+Whenever a day feels off, whenever something goes wrong, or whenever I just need to talk —
+you’ve been there. And that means more than you probably realize 🌧️➡️🌤️
+
+I hope this year gives you growth that feels fulfilling.
+I hope college brings you confidence, clarity, and beautiful memories 🎓
+I hope you find happiness in what you choose, strength in your challenges, and eventually someone who understands you the way you deserve 💞
+
+And no matter what life turns us into —
+no matter how busy or different our paths become —
+I hope this part of us… this quiet, steady bond… always remains 🤍
+
+You deserve every bit of happiness, success, peace, and love this world can offer ✨
+May this year bring you warmth, laughter, small victories, and moments that make you proud of yourself 💫🌸
 
 Happiest Birthday once again, Lavanthika 💝🎉
-Stay amazing, always. 🌷
+Stay strong. Stay kind. Stay exactly the person you are becoming. 🌷
+
 — Paul
 
 `;
@@ -1009,21 +1039,37 @@ Happiest Birthday, and always wishing you happiness 🌼
   <div class="surprise-card">
     <h2>🌷 Watching You Grow</h2>
     <p>
-      From that classroom in 5th standard 🏫✨  
-      to the person you are today…  
+      rom that girl in 5th standard 🏫✨
+      to the woman who is now studying MBBS and chasing her dream…
 
-      We’ve grown in different directions,  
-      chasing different dreams —  
-      yet somehow we’ve always stayed connected 🤍  
+      Watching you grow has been something special.
 
-      Maybe that’s what makes this bond special —  
-      never loud, never forced,  
-      just steady and quietly important 💫  
-
-      Whatever life turns us into,  
-      I hope this part of us —  
-      this quiet, strong bond —  
-      always remains 🤍
+      You didn’t just move forward in life —
+      you worked for it, you earned it,
+      and you became stronger with every challenge 🤍
+      
+      Getting into MBBS isn’t something everyone can do.
+      It takes discipline, sleepless nights, sacrifice, and belief.
+      And you carried all of that quietly, without ever making noise about it.
+      
+      That’s something I’ve always admired about you.
+      
+      I’m genuinely proud of how far you’ve come —
+      not just because you’re becoming a doctor,
+      but because of the person you’ve become along the way 💫
+      
+      Kind. Determined. Strong.
+      And still the same person who feels familiar and comforting to me.
+      
+      May you heal lives,
+      touch hearts,
+      and build a future that makes you proud of yourself every single day.
+      
+      And no matter how far you go,
+      or how much you achieve,
+      I hope you always remember —
+      
+      you were always capable of this. 🤍
     </p>
 
     <button onclick="closeGrowthPopup()" style="margin-top:20px;">
@@ -1044,6 +1090,7 @@ Happiest Birthday, and always wishing you happiness 🌼
     
 </body>
 </html>
+
 
 
 
